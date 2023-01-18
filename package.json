@@ -1,0 +1,32 @@
+{
+	"name": "dlm-woocommerce-integration",
+	"main": "Gruntfile.js",
+	"version": "1.0.0",
+	"author": "WPCHILL",
+	"license": "GPL v3",
+	"repository": "https://github.com/WPChill/dlm-aam-restrict-content.git",
+	"scripts": {
+		"build": "webpack",
+		"watch": "webpack --watch",
+		"production": "cross-env NODE_ENV=production webpack"
+	},
+	"devDependencies": {
+		"css-entry-webpack-plugin": "^1.0.0-beta.4",
+		"css-loader": "^0.26.2",
+		"cssnano": "^3.10.0",
+		"extract-text-webpack-plugin": "^2.0.0",
+		"grunt": "^1.0.3",
+		"grunt-checktextdomain": "^1.0.0",
+		"grunt-cli": "^1.3.2",
+		"grunt-contrib-clean": "^0.7.0",
+		"grunt-contrib-compress": "^1.4.3",
+		"grunt-contrib-copy": "^0.8.2",
+		"grunt-contrib-cssmin": "^0.14.0",
+		"grunt-contrib-uglify": "^4.0.1",
+		"grunt-wp-i18n": "^1.0.2",
+		"load-grunt-tasks": "^3.3.0"
+	},
+	"dependencies": {
+		"npm": "^6.0.1"
+	}
+}

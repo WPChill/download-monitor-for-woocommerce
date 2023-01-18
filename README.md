@@ -1,1 +1,1 @@
-# dlm-woocommerce-integration
+# dlm-paid-membership-pro-integration
