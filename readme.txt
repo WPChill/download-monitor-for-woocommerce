@@ -21,14 +21,14 @@ The simplest way to install is to click on \'Plugins\' then \'Add\' and type \'D
 1. Login to your website and go to the Plugins section of your admin panel.
 2. Click the Add New button.
 3. Under Install Plugins, click the Upload link.
-4. Select the plugin zip file (dlm-woocommerce-integration.zip) from your computer then click the Install Now button.
+4. Select the plugin zip file (download-monitor-woocommerce-integration.zip) from your computer then click the Install Now button.
 5. You should see a message stating that the plugin was installed successfully.
 6. Click the Activate Plugin link.
 
 **For manual installation 2:**
 
 1. You should have access to the server where WordPress is installed. If you don\'t, see your system administrator.
-2. Copy the plugin zip file (dlm-woocommerce-integration.zip) up to your server and unzip it somewhere on the file system.
+2. Copy the plugin zip file (download-monitor-woocommerce-integration.zip) up to your server and unzip it somewhere on the file system.
 3. Copy the \"dlm-aam-woocommerce-integration\" folder into the /wp-content/plugins directory of your WordPress installation.
 4. Login to your website and go to the Plugins section of your admin panel.
 5. Look for \"Download Monitor & Restrict Content integration\" and click Activate.
@@ -37,7 +37,7 @@ The simplest way to install is to click on \'Plugins\' then \'Add\' and type \'D
 
 = How can I say thanks? =
 
-* Give us 5 stars on [Wordpress](https://wordpress.org/support/plugin/dlm-woocommerce-integration/reviews/)
+* Give us 5 stars on [Wordpress](https://wordpress.org/support/plugin/download-monitor-woocommerce-integration/reviews/)
 * Just recommend our plugin to your friends! or
 * Follow us on [Twitter](https://twitter.com/wpchillhq "Twitter") 
 

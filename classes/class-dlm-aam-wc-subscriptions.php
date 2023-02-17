@@ -53,7 +53,7 @@ class DLM_AMM_WC_Subscriptions {
 	
 		$groups[] = array(
 			'key'        => 'wc_subscriptions',
-			'name'       => esc_html__( 'WooCommerce Subscriptions', 'dlm-woocommerce-integration' ),
+			'name'       => esc_html__( 'WooCommerce Subscriptions', 'download-monitor-woocommerce-integration' ),
 			'conditions' => array(
 				'includes' => array(
 					'restriction' => array( 'null', 'amount', 'global_amount', 'daily_amount', 'monthly_amount', 'daily_global_amount', 'monthly_global_amount', 'date', 'wc_subscription_length' ),
@@ -78,7 +78,7 @@ class DLM_AMM_WC_Subscriptions {
 		// Woo Subscriptions groups.
 		$groups[] = array(
 			'key'  => 'null',
-			'name' => esc_html__( 'None', 'dlm-woocommerce-integration' ),
+			'name' => esc_html__( 'None', 'download-monitor-woocommerce-integration' ),
 		);
 
         // Get all Subscription products
@@ -143,7 +143,7 @@ class DLM_AMM_WC_Subscriptions {
 	 */
 	public function rest_variables( $rest_variables ) {
 
-        $vars['str_wc_subscriptions_'] = esc_html__( 'WooCommerce Subscriptions', 'dlm-woocommerce-integration' );
+        $vars['str_wc_subscriptions_'] = esc_html__( 'WooCommerce Subscriptions', 'download-monitor-woocommerce-integration' );
 
 		// Woo Subscriptions groups.
 		$groups = array();

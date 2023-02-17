@@ -18,7 +18,7 @@ class DLM_AMM_WOOCOMMERCE {
 	public function __construct() {
 
 		// Load plugin text domain
-		load_plugin_textdomain( 'dlm-woocommerce-integration', false, dirname( plugin_basename( DLM_AAM_WC_FILE ) ) . '/languages/' );
+		load_plugin_textdomain( 'download-monitor-woocommerce-integration', false, dirname( plugin_basename( DLM_AAM_WC_FILE ) ) . '/languages/' );
 
 		if( 'ok' !== $this->core_exists() && $this->is_dlm_admin_page() ){
 
@@ -62,7 +62,7 @@ class DLM_AMM_WOOCOMMERCE {
 	
 		$groups[] = array(
 			'key'        => 'wc_product_cat',
-			'name'       => esc_html__( 'WooCommerce Category', 'dlm-woocommerce-integration' ),
+			'name'       => esc_html__( 'WooCommerce Category', 'download-monitor-woocommerce-integration' ),
 			'conditions' => array(
 				'includes' => array(
 					'restriction' => array( 'null', 'amount', 'global_amount', 'daily_amount', 'monthly_amount', 'daily_global_amount', 'monthly_global_amount', 'date' ),
@@ -156,7 +156,7 @@ class DLM_AMM_WOOCOMMERCE {
 		// WooCommerce groups.
 		$groups[] = array(
 			'key'  => 'null',
-			'name' => esc_html__( 'None', 'dlm-woocommerce-integration' ),
+			'name' => esc_html__( 'None', 'download-monitor-woocommerce-integration' ),
 		);
 
 		global $wpdb;
@@ -186,7 +186,7 @@ class DLM_AMM_WOOCOMMERCE {
 	 */
 	public function rest_variables( $rest_variables ) {
 
-        $vars['str_wc_product'] = esc_html__( 'WC Product Categories', 'dlm-woocommerce-integration' );
+        $vars['str_wc_product'] = esc_html__( 'WC Product Categories', 'download-monitor-woocommerce-integration' );
 
 		// WooCommerce groups.
 		$groups = array();
@@ -293,19 +293,19 @@ class DLM_AMM_WOOCOMMERCE {
 	 */
 	public function display_notice_core_missing() {
 
-		$dlm_link = '<a href="https://wordpress.org/plugins/download-monitor/" target="_blank"><strong>' . __( 'Download Monitor', 'dlm-woocommerce-integration' ) . '</strong></a>';
-		$wc_link = '<a href="https://wordpress.org/plugins/woocommerce/" target="_blank"><strong>' . __( 'WooCommerce', 'dlm-woocommerce-integration' ) . '</strong></a>';
-		$aam_link = '<a href="https://www.download-monitor.com/extensions/advanced-access-manager/?utm_source=download-monitor&utm_medium=rcp-integration&utm_campaign=upsell" target="_blank"><strong>' . __( 'Download Monitor - Advanced Access Manager', 'dlm-woocommerce-integration' ) . '</strong></a>';
+		$dlm_link = '<a href="https://wordpress.org/plugins/download-monitor/" target="_blank"><strong>' . __( 'Download Monitor', 'download-monitor-woocommerce-integration' ) . '</strong></a>';
+		$wc_link = '<a href="https://wordpress.org/plugins/woocommerce/" target="_blank"><strong>' . __( 'WooCommerce', 'download-monitor-woocommerce-integration' ) . '</strong></a>';
+		$aam_link = '<a href="https://www.download-monitor.com/extensions/advanced-access-manager/?utm_source=download-monitor&utm_medium=rcp-integration&utm_campaign=upsell" target="_blank"><strong>' . __( 'Download Monitor - Advanced Access Manager', 'download-monitor-woocommerce-integration' ) . '</strong></a>';
 
 		$core_exists = $this->core_exists();
 		$notice_messages = array(
-			'missing_dlm' 	=> sprintf( __( 'Download Monitor & WooCommerce integration requires %s in order to work.', 'dlm-woocommerce-integration' ), $dlm_link ),
-			'missing_aam'	=> sprintf( __( 'Download Monitor & WooCommerce integration requires %s addon in order to work.', 'dlm-woocommerce-integration' ), $aam_link ),
-			'missing_wc' 	=> sprintf( __( 'Download Monitor & WooCommerce integration requires %s in order to work.', 'dlm-woocommerce-integration' ), $wc_link ),
-			'missing_dlm_amm' 	=> sprintf( __( 'Download Monitor & WooCommerce integration requires %s & %s addon in order to work.', 'dlm-woocommerce-integration' ), $dlm_link, $aam_link ),
-			'missing_dlm_wc' 	=> sprintf( __( 'Download Monitor & WooCommerce integration requires %s & %s plugin in order to work.', 'dlm-woocommerce-integration' ), $dlm_link, $wc_link ),
-			'missing_amm_wc' 	=> sprintf( __( 'Download Monitor & WooCommerce integration requires %s addon & %s plugin in order to work.', 'dlm-woocommerce-integration' ), $aam_link, $wc_link ),
-			'missing_all' 	=> sprintf( __( 'Download Monitor & WooCommerce integration requires %s, %s addon & %s plugin in order to work.', 'dlm-woocommerce-integration' ), $dlm_link, $aam_link, $wc_link ),
+			'missing_dlm' 	=> sprintf( __( 'Download Monitor & WooCommerce integration requires %s in order to work.', 'download-monitor-woocommerce-integration' ), $dlm_link ),
+			'missing_aam'	=> sprintf( __( 'Download Monitor & WooCommerce integration requires %s addon in order to work.', 'download-monitor-woocommerce-integration' ), $aam_link ),
+			'missing_wc' 	=> sprintf( __( 'Download Monitor & WooCommerce integration requires %s in order to work.', 'download-monitor-woocommerce-integration' ), $wc_link ),
+			'missing_dlm_amm' 	=> sprintf( __( 'Download Monitor & WooCommerce integration requires %s & %s addon in order to work.', 'download-monitor-woocommerce-integration' ), $dlm_link, $aam_link ),
+			'missing_dlm_wc' 	=> sprintf( __( 'Download Monitor & WooCommerce integration requires %s & %s plugin in order to work.', 'download-monitor-woocommerce-integration' ), $dlm_link, $wc_link ),
+			'missing_amm_wc' 	=> sprintf( __( 'Download Monitor & WooCommerce integration requires %s addon & %s plugin in order to work.', 'download-monitor-woocommerce-integration' ), $aam_link, $wc_link ),
+			'missing_all' 	=> sprintf( __( 'Download Monitor & WooCommerce integration requires %s, %s addon & %s plugin in order to work.', 'download-monitor-woocommerce-integration' ), $dlm_link, $aam_link, $wc_link ),
 		);
 
 		$class = 'notice notice-error';
