@@ -4,7 +4,7 @@
 	"version": "1.0.0",
 	"author": "WPCHILL",
 	"license": "GPL v3",
-	"repository": "https://github.com/WPChill/dlm-aam-restrict-content.git",
+	"repository": "https://github.com/WPChill/download-monitor-woocommerce-integration.git",
 	"scripts": {
 		"build": "webpack",
 		"watch": "webpack --watch",

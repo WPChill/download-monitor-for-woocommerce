@@ -52,9 +52,9 @@ module.exports = function( grunt ) {
 	                domainPath: 'languages/',         // Where to save the POT file.
 	                exclude: [],                      // List of files or directories to ignore.
 	                include: [],                      // List of files or directories to include.
-	                mainFile: 'dlm-aam-woocommerce.php',                     // Main project file.
+	                mainFile: 'download-monitor-woocommerce-integration.php',                     // Main project file.
 	                potComments: '',                  // The copyright at the beginning of the POT file.
-	                potFilename: 'dlm-aam-woocommerce.pot',                  // Name of the POT file.
+	                potFilename: 'download-monitor-woocommerce-integration.pot',                  // Name of the POT file.
 	                potHeaders: {
 	                    poedit: true,                 // Includes common Poedit headers.
 	                    'x-poedit-keywordslist': true // Include a list of all possible gettext functions.
@@ -109,7 +109,7 @@ module.exports = function( grunt ) {
 					'!postcss.config.js',
 					'!webpack.config.js',
 					'!set_tags.sh',
-					'!dlm-aam-woocommerce.zip',
+					'!download-monitor-woocommerce-integration.zip',
 					'!old/**',
 					'!bin/**',
 					'!tests/**',
