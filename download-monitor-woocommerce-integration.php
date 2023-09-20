@@ -32,16 +32,22 @@ function _dlm_aam_woocommerce_integration() {
 	define( 'DLM_AAM_WC_URL', plugin_dir_url( __FILE__ ) );
 
 	// include files.
-	require_once dirname( __FILE__ ) . '/classes/class-dlm-aam-woocommerce.php';
+	require_once DLM_AAM_WC_PATH . 'classes/class-dlm-aam-woocommerce.php';
 
 	// Instantiate main plugin object.
 	DLM_AMM_WOOCOMMERCE::get_instance();
 
 	if ( class_exists( 'WC_Subscriptions' ) ) {
-		require_once dirname( __FILE__ ) . '/classes/class-dlm-aam-wc-subscriptions.php';
+		require_once DLM_AAM_WC_PATH . 'classes/class-dlm-aam-wc-subscriptions.php';
 		// Instantiate subscriptions plugin object.
 		DLM_AMM_WC_Subscriptions::get_instance();
 	}
+	require_once DLM_AAM_WC_PATH . 'classes/class-dlm-wc-integration.php';
+	require_once DLM_AAM_WC_PATH . 'classes/class-dlm-wc-constants.php';
+	require_once DLM_AAM_WC_PATH . 'classes/class-dlm-wc-access.php';
+
+	$dlm_wc_integration = DLM_WC_Integration::get_instance();
+	DLM_WC_Access::get_instance();
 }
 
 // init extension.
