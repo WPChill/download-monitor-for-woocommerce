@@ -40,6 +40,7 @@ class DLM_WC_Integration {
 		add_action( 'woocommerce_product_options_general_product_data', array( $this, 'add_download_monitor_field' ) );
 		add_action( 'woocommerce_process_product_meta', array( $this, 'save_download_monitor_field' ) );
 		add_action( 'woocommerce_account_downloads_endpoint', array( $this, 'show_download_monitor_content' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_scripts' ) );
 	}
 
 	/**
@@ -50,26 +51,25 @@ class DLM_WC_Integration {
 	 * @since 1.0.0
 	 */
 	public function add_download_monitor_field() {
-		global $post;
-		echo '<div class="options_group">';
-		woocommerce_wp_select(
-			array(
-				'id'      => '_download_monitor_id',
-				'label'   => __( 'Link Download', 'download-monitor-woocommerce-integration' ),
-				'options' => array( '' => __( 'Select Download', 'download-monitor-woocommerce-integration' ) ) + $this->get_download_monitor_options(),
-				'class'   => 'wc-enhanced-select',
-				'style'   => 'width: 400px;'
-			)
-		);
-		echo '</div>';
-		// Inline JavaScript to initialize Select2
-		echo '<script type="text/javascript">
-            jQuery(document).ready(function($) {
-                $(".wc-enhanced-select").select2();
-            });
-        </script>';
+		$downloads = $this->get_download_monitor_options();
+		?>
+		<div class="options-group dlm-woocommerce-locked-downloads">
+			<p class="form-field">
+				<label for="<?php echo esc_attr( DLM_WC_Constants::META_WC_PROD_KEY ); ?>">Downloads</label>
+				<select class='wc-enhanced-select'
+				        name='<?php echo esc_attr( DLM_WC_Constants::META_WC_PROD_KEY ); ?>[]' multiple='multiple'>
+					<?php
+					// Cycle through each download and output the option.
+					foreach ( $downloads as $id => $title ) {
+						$selected = in_array( (string) $id, (array) get_post_meta( get_the_ID(), DLM_WC_Constants::META_WC_PROD_KEY, true ), true );
+						echo '<option value="' . esc_attr( $id ) . '" ' . ( $selected ? ' selected="selected" ' : '' ) . '>' . esc_html( $title ) . '</option>';
+					}
+					?>
+				</select>
+			</p>
+		</div>
+		<?php
 	}
-
 
 	/**
 	 * Save the download monitor field and update the associated meta with the correct ID.
@@ -77,10 +77,22 @@ class DLM_WC_Integration {
 	 * @since 1.0.0
 	 */
 	public function save_download_monitor_field( $post_id ) {
-		$download_monitor_id = $_POST['_download_monitor_id'];
-		if ( ! empty( $download_monitor_id ) ) {
-			update_post_meta( $post_id, '_download_monitor_id', absint( $download_monitor_id ) );
-			update_post_meta( absint( $download_monitor_id ), '_dlm_wc_locked', $post_id );
+		// The retrieved data should be an array.
+		$download_monitor_ids = $_POST[ DLM_WC_Constants::META_WC_PROD_KEY ];
+		if ( ! empty( $download_monitor_ids ) ) {
+			update_post_meta( $post_id, DLM_WC_Constants::META_WC_PROD_KEY, $download_monitor_ids );
+			// Lock each download to the product.
+			foreach ( $download_monitor_ids as $id ) {
+				$currently_locked = get_post_meta( absint( $id ), DLM_WC_Constants::META_WC_PROD_KEY, true );
+				if ( ! empty( $currently_locked ) && is_array( $currently_locked ) ) {
+					if ( ! in_array( $post_id, $currently_locked, true ) ) {
+						$currently_locked[] = $post_id;
+					}
+					update_post_meta( absint( $id ), DLM_WC_Constants::META_WC_LOCKED_KEY, $currently_locked );
+				} else {
+					update_post_meta( absint( $id ), DLM_WC_Constants::META_WC_LOCKED_KEY, array( $post_id ) );
+				}
+			}
 		}
 	}
 
@@ -94,7 +106,7 @@ class DLM_WC_Integration {
 	}
 
 	/**
-	 * Add the download monitor endpoint to the my account area.
+	 * Add the download monitor endpoint to the "My account" area.
 	 *
 	 * @return void
 	 * @since 1.0.0
@@ -104,7 +116,7 @@ class DLM_WC_Integration {
 	}
 
 	/**
-	 * Show the download monitor content in the my account area.
+	 * Show the download monitor content in the "My account" area.
 	 * Make sure they have purchased the download.
 	 * Block the download access if they haven't purchased the content.
 	 *
@@ -130,27 +142,31 @@ class DLM_WC_Integration {
 
 			$items = $order->get_items();
 			foreach ( $items as $item ) {
-				$product_id  = $item->get_product_id();
-				$download_id = get_post_meta( $product_id, '_download_monitor_id', true );
-				if ( $download_id ) {
-					$download_ids[] = $download_id;
+				$product_id = $item->get_product_id();
+				$downloads  = get_post_meta( $product_id, DLM_WC_Constants::META_WC_PROD_KEY, true );
+				if ( ! empty( $downloads ) ) {
+					foreach ( $downloads as $download ) {
+						if ( ! in_array( $download, $download_ids, true ) ) {
+							$download_ids[] = $download;
+						}
+					}
 				}
 			}
 		}
 
+		echo '<h2>' . esc_html__( 'Download Monitor Downloads', 'download-monitor-woocommerce-integration' ) . '</h2>';
+
 		if ( empty( $download_ids ) ) {
-			echo '<h2>' . esc_html__( 'Download Monitor Downloads', 'download-monitor-woocommerce-integration' ) . '</h2>';
 			echo esc_html__( 'No downloads available.', 'download-monitor-woocommerce-integration' );
 
 			return;
 		}
 
-		echo '<h2>' . esc_html__( 'Download Monitor Downloads', 'download-monitor-woocommerce-integration' ) . '</h2>';
 		echo '<ul>';
 		foreach ( $download_ids as $download_id ) {
-			$download = get_post( $download_id );
+			$download = download_monitor()->service( 'download_repository' )->retrieve_single( $download_id );
 			if ( $download ) {
-				echo '<li><a href="' . esc_url( get_permalink( $download_id ) ) . '">' . esc_html( $download->post_title ) . '</a></li>';
+				echo '<li><a href="' . esc_url( $download->get_the_download_link() ) . '">' . esc_html( $download->get_title() ) . '</a></li>';
 			}
 		}
 		echo '</ul>';
@@ -164,18 +180,29 @@ class DLM_WC_Integration {
 	 */
 	public function get_download_monitor_options() {
 		// Fetch Download Monitor downloads.
-		$downloads = get_posts(
-			array(
-				'post_type'   => 'dlm_download',
-				'numberposts' => - 1
-			)
-		);
+		$downloads = download_monitor()->service( 'download_repository' )->retrieve();
 
 		$options = array();
 		foreach ( $downloads as $download ) {
-			$options[ $download->ID ] = $download->post_title;
+			$options[ $download->get_id() ] = $download->get_title();
 		}
 
 		return $options;
+	}
+
+	/**
+	 * Add required scripts and styles
+	 *
+	 * @return void
+	 * @since 1.0.0
+	 */
+	public function enqueue_admin_scripts() {
+
+		// Enqueue scripts only in WooCommerce Product edit/new screen
+		if ( ! function_exists( 'get_current_screen' ) || ! get_current_screen() || 'product' !== get_current_screen()->id ) {
+			return;
+		}
+		wp_enqueue_script( 'dlm-wc-integration', DLM_WC_URL . '/assets/js/admin.js', array( 'select2' ), DLM_WC_VERSION, true );
+		wp_enqueue_style( 'dlm-wc-integration', DLM_WC_URL . '/assets/css/admin.css', array(), DLM_WC_VERSION );
 	}
 }

@@ -24,31 +24,22 @@
  *
  * @return void
  */
-function _dlm_aam_woocommerce_integration() {
+function _dlm_woocommerce_integration() {
 
 	// Define.
-	define( 'DLM_AAM_WC_FILE', __FILE__ );
-	define( 'DLM_AAM_WC_PATH', plugin_dir_path( __FILE__ ) );
-	define( 'DLM_AAM_WC_URL', plugin_dir_url( __FILE__ ) );
+	define( 'DLM_WC_FILE', __FILE__ );
+	define( 'DLM_WC_PATH', plugin_dir_path( __FILE__ ) );
+	define( 'DLM_WC_URL', plugin_dir_url( __FILE__ ) );
+	define( 'DLM_WC_VERSION', '1.0.0' );
 
 	// include files.
-	require_once DLM_AAM_WC_PATH . 'classes/class-dlm-aam-woocommerce.php';
-
-	// Instantiate main plugin object.
-	DLM_AMM_WOOCOMMERCE::get_instance();
-
-	if ( class_exists( 'WC_Subscriptions' ) ) {
-		require_once DLM_AAM_WC_PATH . 'classes/class-dlm-aam-wc-subscriptions.php';
-		// Instantiate subscriptions plugin object.
-		DLM_AMM_WC_Subscriptions::get_instance();
-	}
-	require_once DLM_AAM_WC_PATH . 'classes/class-dlm-wc-integration.php';
-	require_once DLM_AAM_WC_PATH . 'classes/class-dlm-wc-constants.php';
-	require_once DLM_AAM_WC_PATH . 'classes/class-dlm-wc-access.php';
-
-	$dlm_wc_integration = DLM_WC_Integration::get_instance();
+	require_once DLM_WC_PATH . 'classes/class-dlm-wc-integration.php';
+	require_once DLM_WC_PATH . 'classes/class-dlm-wc-constants.php';
+	require_once DLM_WC_PATH . 'classes/class-dlm-wc-access.php';
+	// Initiate classes.
+	DLM_WC_Integration::get_instance();
 	DLM_WC_Access::get_instance();
 }
 
 // init extension.
-add_action( 'plugins_loaded', '_dlm_aam_woocommerce_integration', 120 );
+add_action( 'plugins_loaded', '_dlm_woocommerce_integration', 120 );
