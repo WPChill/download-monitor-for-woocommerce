@@ -83,7 +83,7 @@ class DLM_WC_Integration {
 			update_post_meta( $post_id, DLM_WC_Constants::META_WC_PROD_KEY, $download_monitor_ids );
 			// Lock each download to the product.
 			foreach ( $download_monitor_ids as $id ) {
-				$currently_locked = get_post_meta( absint( $id ), DLM_WC_Constants::META_WC_PROD_KEY, true );
+				$currently_locked = get_post_meta( absint( $id ), DLM_WC_Constants::META_WC_LOCKED_KEY, true );
 				if ( ! empty( $currently_locked ) && is_array( $currently_locked ) ) {
 					if ( ! in_array( $post_id, $currently_locked, true ) ) {
 						$currently_locked[] = $post_id;

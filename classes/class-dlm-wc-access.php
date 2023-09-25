@@ -36,6 +36,7 @@ class DLM_WC_Access {
 		add_filter( 'dlm_can_download', array( $this, 'check_access' ), 30, 5 );
 		// Add shortcode form to the no access page
 		add_action( 'dlm_no_access_after_message', array( $this, 'add_products_on_modal' ), 15, 1 );
+		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 	}
 
 	/**
@@ -152,7 +153,7 @@ class DLM_WC_Access {
 	 */
 	public function add_products_on_modal( $download ) {
 
-		$products = get_post_meta( $download->get_id(), DLM_WC_Constants::META_WC_PROD_KEY, true );
+		$products = get_post_meta( $download->get_id(), DLM_WC_Constants::META_WC_LOCKED_KEY, true );
 
 		if ( ! empty( $products ) ) {
 			$template_handler = new DLM_Template_Handler();
@@ -167,5 +168,15 @@ class DLM_WC_Access {
 			);
 			echo ob_get_clean();
 		}
+	}
+
+	/**
+	 * Enqueue needed scripts and styles
+	 *
+	 * @return void
+	 * @since 1.0.0
+	 */
+	public function enqueue_scripts() {
+		wp_enqueue_style( 'dlm-wci-frontend', DLM_WC_URL . 'assets/css/front/frontend.css', array(), DLM_WC_VERSION );
 	}
 }
