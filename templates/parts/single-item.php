@@ -15,7 +15,7 @@ $product = wc_get_product( $id );
 		<!-- Price, update based on frequency toggle state -->
 		<span class='dlm-text-4xl dlm-font-bold dlm-tracking-tight dlm-text-gray-900'><?php echo wp_kses_post( $product->get_price_html() );  ?></span>
 	</p>
-	<a href='<?php echo $product->add_to_cart_url() ?>'
+	<a href='<?php echo esc_url( wc_get_cart_url() .'?' . http_build_query( array( 'add-to-cart' => $id ) ) ); ?>'
 	   class='dlm-mt-6 dlm-block dlm-rounded-md dlm-py-2 dlm-px-3 dlm-text-center dlm-text-sm dlm-font-semibold dlm-leading-6 focus-visible:dlm-outline focus-visible:dlm-outline-2 focus-visible:dlm-outline-offset-2 focus-visible:dlm-outline-indigo-600 dlm-text-indigo-600 dlm-ring-1 dlm-ring-inset dlm-ring-indigo-200 hover:dlm-ring-indigo-300'><?php esc_html_e( 'Buy now', 'download-monitor-woocommerce-integration' ) ?></a>
 </div>
 <?php
