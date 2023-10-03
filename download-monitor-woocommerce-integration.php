@@ -36,9 +36,11 @@ function _dlm_woocommerce_integration() {
 	require_once DLM_WC_PATH . 'classes/class-dlm-wc-integration.php';
 	require_once DLM_WC_PATH . 'classes/class-dlm-wc-constants.php';
 	require_once DLM_WC_PATH . 'classes/class-dlm-wc-access.php';
+	require_once DLM_WC_PATH . 'classes/class-dlm-wc-modal.php';
 	// Initiate classes.
 	DLM_WC_Integration::get_instance();
 	DLM_WC_Access::get_instance();
+	DLM_WC_Modal::get_instance();
 }
 
 // init extension.

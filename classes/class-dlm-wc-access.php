@@ -60,23 +60,33 @@ class DLM_WC_Access {
 
 		// let's check if the user is logged in
 		if ( ! is_user_logged_in() ) {
-			return $has_access;
+			// If product is locked by Woocommerce and user not logged in automatically deny access
+			// and list the products that are locking the download
+			$this->set_headers( $download );
+
+			return false;
 		}
 
 		// let's check if the user has a completed order with the download
-		$has_order = false;
-		$user_id   = get_current_user_id();
+		$has_order     = false;
+		$user_id       = get_current_user_id();
+		$orders        = array();
+		$subscriptions = array();
 
-		// Get all completed orders for the user
-		$orders = wc_get_orders(
-			array(
-				'customer' => $user_id,
-				'status'   => array( 'completed' ),
-			)
-		);
+		if ( function_exists( 'wc_get_orders' ) ) {
+			// Get all completed orders for the user
+			$orders = wc_get_orders(
+				array(
+					'customer' => $user_id,
+					'status'   => array( 'completed' ),
+				)
+			);
+		}
 
-		// Get current user subscriptions
-		$subscriptions = wcs_get_users_subscriptions( $user_id );
+		if ( function_exists( 'wcs_get_users_subscriptions' ) ) {
+			// Get current user subscriptions
+			$subscriptions = wcs_get_users_subscriptions( $user_id );
+		}
 
 		// If there are no orders or subscriptions, deny access
 		if ( empty( $orders ) && empty( $subscriptions ) ) {
@@ -177,6 +187,6 @@ class DLM_WC_Access {
 	 * @since 1.0.0
 	 */
 	public function enqueue_scripts() {
-		wp_enqueue_style( 'dlm-wci-frontend', DLM_WC_URL . 'assets/css/front/frontend.css', array(), DLM_WC_VERSION );
+		wp_register_style( 'dlm-wci-frontend', DLM_WC_URL . 'assets/css/front/frontend.css', array(), DLM_WC_VERSION );
 	}
 }
