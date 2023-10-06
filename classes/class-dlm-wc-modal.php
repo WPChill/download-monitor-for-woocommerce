@@ -50,7 +50,11 @@ class DLM_WC_Modal {
 	 * @since 1.0.0
 	 */
 	public function add_footer_scripts() {
-
+		// Only add the script if the modal template exists.
+		// Failsafe, in case the Modal template is non-existent, for example prior to DLM 4.8.11
+		if ( ! class_exists( 'DLM_Constants' ) || ! defined( 'DLM_Constants::DLM_MODAL_TEMPLATE' ) ) {
+			return;
+		}
 		?>
 		<script>
 			jQuery(document).on('dlm-xhr-modal-data', function (e, data, headers) {
@@ -81,32 +85,12 @@ class DLM_WC_Modal {
 			if ( ! $content ) {
 				$content = __( 'No products found.', 'download-monitor-woocommerce-integration' );
 			}
-
-			if ( method_exists( 'DLM_Modal', 'display_modal_template' ) ) {
-				DLM_Modal::display_modal_template(
-					array(
-						'title'   => $title,
-						'content' => '<div id="dlm_woo_lock_form">' . $content . '</div>'
-					)
-				);
-			} else {
-				// Now create the content.
-				ob_start();
-				try {
-					// Template handler.
-					$template_handler = new DLM_Template_Handler();
-
-					// Load template.
-					$template_handler->get_template_part( 'no-access-modal', '', '', array(
-						'content' => '<div id="dlm_woo_lock_form">' . $content . '</div>',
-						'title'   => $title,
-					) );
-					wp_print_scripts();
-					wp_print_styles();
-					echo ob_get_clean();
-				} catch ( Exception $exception ) {
-				}
-			}
+			DLM_Modal::display_modal_template(
+				array(
+					'title'   => $title,
+					'content' => '<div id="dlm_woo_lock_form">' . $content . '</div>'
+				)
+			);
 		}
 
 		wp_die();

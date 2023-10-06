@@ -136,7 +136,7 @@ class DLM_WC_Access {
 	 * @return void
 	 */
 	public function set_headers( $download ) {
-		if ( get_option( 'dlm_no_access_modal', false ) && apply_filters( 'do_dlm_xhr_access_modal', true, $download ) ) {
+		if ( get_option( 'dlm_no_access_modal', false ) && apply_filters( 'do_dlm_xhr_access_modal', true, $download ) && defined( 'DLM_DOING_XHR' ) && DLM_DOING_XHR ) {
 
 			header_remove( 'X-dlm-no-waypoints' );
 
