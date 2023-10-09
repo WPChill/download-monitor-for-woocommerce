@@ -51,7 +51,7 @@ class DLM_WC_Modal {
 	 */
 	public function add_footer_scripts() {
 		// Only add the script if the modal template exists.
-		// Failsafe, in case the Modal template is non-existent, for example prior to DLM 4.8.11
+		// Failsafe, in case the Modal template is non-existent, for example prior to DLM 4.9.0
 		if ( ! class_exists( 'DLM_Constants' ) || ! defined( 'DLM_Constants::DLM_MODAL_TEMPLATE' ) ) {
 			return;
 		}
