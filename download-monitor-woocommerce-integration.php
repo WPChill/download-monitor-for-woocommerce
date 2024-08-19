@@ -6,6 +6,7 @@
 	Version: 1.0.0
 	Author: WPChill
 	Author URI: https://wpchill.com
+    Requires Plugins: woocommerce, download-monitor
 	License: GPL v3
 	This program is free software: you can redistribute it and/or modify
 	it under the terms of the GNU General Public License as published by
