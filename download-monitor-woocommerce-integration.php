@@ -2,7 +2,7 @@
 /*
 	Plugin Name: Download Monitor - WooCommerce integration
 	Plugin URI: https://www.download-monitor.com/extensions/dlm-simple-wordpress-membership-integration/
-	Description: Download Monitor & WooCommerce integration extension allows you to limit downloads by bought products categories & subscription.
+	Description: With the help of this extension you will be able to restrict the downloads from your website behind a WooCommerce purchase.
 	Version: 1.0.0
 	Author: WPChill
 	Author URI: https://wpchill.com
