@@ -39,7 +39,7 @@ function _dlm_woocommerce_integration() {
 
 	//Check if WooCommerce is active.
 	if ( ! class_exists( 'WooCommerce' ) ) {
-		add_action( 'admin_notices', 'dlm_woocommerce_dlm_needs', 15 );
+		add_action( 'admin_notices', 'dlm_woocommerce_woocommerce_needs', 15 );
 
 		return;
 	}
