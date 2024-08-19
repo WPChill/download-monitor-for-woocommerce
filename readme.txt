@@ -1,48 +1,51 @@
-=== Download Monitor & WooCommerce integration  ===
+=== Download Monitor e-commerce integration ===
 Contributors: wpchill
-Tags: best download monitor plugin, manage downloads access, manage user access, download counts, restrict downloads, DLM WooCommerce integration,download access manager, manage user downloads, manage members downloads, manage courses downloads, restrict content groups downloads, 
-Requires at least: 5.2
-Tested up to: 6.0
+Tags: download, shop, purchase, files, protection
+Requires at least: 5.5
+Tested up to: 6.6.1
+Stable tag: 4.9.14
+License: GPLv3
 Requires PHP: 5.6
-Stable tag: 1.0.0
-License: GNU General Public License v3.0 or later
-The WordPress gallery plugin that's highly customizable & you can use to impress your clients. Create beautiful image galleries in minutes.
 
-== Description == 
-With Download Monitor & WooCommerce integration you can allow only certain WooCommerce groups users to download from your website and set a maximum number of downloads based on their subscription duration.
+Restrict downloads behind a WooCommerce purchase.
 
-== Installation ==
-**For automatic installation:**
+== Description ==
 
-The simplest way to install is to click on \'Plugins\' then \'Add\' and type \'Download Monitor WooCommerce\' in the search field.
+With the help of this extension you will be able to restrict the downloads from your website behind a WooCommerce purchase.
 
-**For manual installation 1:**
+== How does it work ==
 
-1. Login to your website and go to the Plugins section of your admin panel.
-2. Click the Add New button.
-3. Under Install Plugins, click the Upload link.
-4. Select the plugin zip file (download-monitor-woocommerce-integration.zip) from your computer then click the Install Now button.
-5. You should see a message stating that the plugin was installed successfully.
-6. Click the Activate Plugin link.
+When configuring your WooCommerce products, you will be able to select and attach a download/file from Download Monitor. This will allow users to download that specific file only after they purchase the product it is linked to. Easy as that!
 
-**For manual installation 2:**
-
-1. You should have access to the server where WordPress is installed. If you don\'t, see your system administrator.
-2. Copy the plugin zip file (download-monitor-woocommerce-integration.zip) up to your server and unzip it somewhere on the file system.
-3. Copy the \"dlm-aam-woocommerce-integration\" folder into the /wp-content/plugins directory of your WordPress installation.
-4. Login to your website and go to the Plugins section of your admin panel.
-5. Look for \"Download Monitor & Restrict Content integration\" and click Activate.
+You can read more about this extension in our [official documentation article](https://download-monitor.com/kb/).
 
 == Frequently Asked Questions ==
 
-= How can I say thanks? =
+= What do I need to install to use this? =
 
-* Give us 5 stars on [Wordpress](https://wordpress.org/support/plugin/download-monitor-woocommerce-integration/reviews/)
-* Just recommend our plugin to your friends! or
-* Follow us on [Twitter](https://twitter.com/wpchillhq "Twitter") 
+For this you will need to install Download Monitor, WooCommerce and the extension that provides the integration between the two plugins.
 
+= Do I need to be logged in for this? =
+
+Yes, in order for the integration to properly determine your download permissions you will need to be logged in. This will properly identify the link between the completed order and the customer trying to download the file.
+
+= What payment integrations are available? =
+
+You can take advantage of all the payment integrations provided by WooCommerce, the actual purchases are handled directly from there. 
+
+= Can I attach multiple downloads to a single product? =
+
+Yes, when configuring your WooCommerce product you can link one or multiple downloads from Download Monitor. 
+
+== Screenshots ==
+
+1. Download Monitor - download configuration
+2. WooCommerce - product configuration
+3. Trying to download a restricted file
+4. Making the purchase
+5. Download the file after purchase
 
 == Changelog ==
 
 = 1.0.0 =
-* Initial Release
+Initial Release

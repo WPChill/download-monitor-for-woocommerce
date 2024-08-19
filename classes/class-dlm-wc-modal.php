@@ -88,7 +88,8 @@ class DLM_WC_Modal {
 			DLM_Modal::display_modal_template(
 				array(
 					'title'   => $title,
-					'content' => '<div id="dlm_woo_lock_form">' . $content . '</div>'
+					'content' => '<div id="dlm_woo_lock_form">' . $content . '</div>',
+					'tailwind' => true
 				)
 			);
 		}
