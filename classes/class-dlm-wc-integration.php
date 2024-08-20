@@ -1,6 +1,6 @@
 <?php
 
-defined( 'ABSPATH' ) || exit;
+defined( 'ABSPATH' ) || exit; // Exit if accessed directly.
 
 /**
  * Class DLM_WC_Integration
@@ -10,6 +10,12 @@ defined( 'ABSPATH' ) || exit;
  */
 class DLM_WC_Integration {
 
+	/**
+	 * The singleton instance of the class.
+	 *
+	 * @var object
+	 * @since 1.0.0
+	 */
 	public static $instance;
 
 	/**
@@ -19,13 +25,11 @@ class DLM_WC_Integration {
 	 * @since 1.0.0
 	 */
 	public static function get_instance() {
-
 		if ( ! isset( self::$instance ) && ! ( self::$instance instanceof DLM_WC_Integration ) ) {
 			self::$instance = new DLM_WC_Integration();
 		}
 
 		return self::$instance;
-
 	}
 
 	/**
@@ -55,9 +59,11 @@ class DLM_WC_Integration {
 		?>
 		<div class="options-group dlm-woocommerce-locked-downloads">
 			<p class="form-field">
-				<label for="<?php echo esc_attr( DLM_WC_Constants::META_WC_PROD_KEY ); ?>">Downloads</label>
+				<label for="<?php
+				echo esc_attr( DLM_WC_Constants::META_WC_PROD_KEY ); ?>">Downloads</label>
 				<select class='wc-enhanced-select'
-				        name='<?php echo esc_attr( DLM_WC_Constants::META_WC_PROD_KEY ); ?>[]' multiple='multiple'>
+				        name='<?php
+				        echo esc_attr( DLM_WC_Constants::META_WC_PROD_KEY ); ?>[]' multiple='multiple'>
 					<?php
 					// Cycle through each download and output the option.
 					foreach ( $downloads as $id => $title ) {
@@ -74,11 +80,14 @@ class DLM_WC_Integration {
 	/**
 	 * Save the download monitor field and update the associated meta with the correct ID.
 	 *
+	 * @param  int  $post_id  The ID of the product being saved.
+	 *
 	 * @since 1.0.0
 	 */
 	public function save_download_monitor_field( $post_id ) {
 		// The retrieved data should be an array.
-		$download_monitor_ids = $_POST[ DLM_WC_Constants::META_WC_PROD_KEY ];
+		$download_monitor_ids = ! empty( $_POST[ DLM_WC_Constants::META_WC_PROD_KEY ] ) ? array_map( 'absint', $_POST[ DLM_WC_Constants::META_WC_PROD_KEY ] ) : array();
+
 		if ( ! empty( $download_monitor_ids ) ) {
 			update_post_meta( $post_id, DLM_WC_Constants::META_WC_PROD_KEY, $download_monitor_ids );
 			// Lock each download to the product.
@@ -98,6 +107,10 @@ class DLM_WC_Integration {
 
 	/**
 	 * Hook in and add the download monitor tab
+	 *
+	 * @param  array  $items  The existing tabs.
+	 *
+	 * @since 1.0.0
 	 */
 	public function add_download_monitor_tab( $items ) {
 		$items['download_monitor'] = 'Download Monitor';
@@ -130,12 +143,12 @@ class DLM_WC_Integration {
 			return;
 		}
 
-		// Fetch all orders for the current user
+		// Fetch all orders for the current user.
 		$orders       = wc_get_orders( array( 'customer' => $user_id ) );
 		$download_ids = array();
 
 		foreach ( $orders as $order ) {
-			// Check if the order is completed
+			// Check if the order is completed.
 			if ( 'completed' !== $order->get_status() ) {
 				continue;
 			}
@@ -197,8 +210,7 @@ class DLM_WC_Integration {
 	 * @since 1.0.0
 	 */
 	public function enqueue_admin_scripts() {
-
-		// Enqueue scripts only in WooCommerce Product edit/new screen
+		// Enqueue scripts only in WooCommerce Product edit/new screen.
 		if ( ! function_exists( 'get_current_screen' ) || ! get_current_screen() || 'product' !== get_current_screen()->id ) {
 			return;
 		}

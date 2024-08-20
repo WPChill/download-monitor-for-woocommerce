@@ -31,14 +31,14 @@ function _dlm_woocommerce_integration() {
 	define( 'DLM_WC_PATH', plugin_dir_path( __FILE__ ) );
 	define( 'DLM_WC_URL', plugin_dir_url( __FILE__ ) );
 	define( 'DLM_WC_VERSION', '1.0.0' );
-	// Check if DLM is active.
-	if ( ! class_exists( 'WP_DLM' ) ) {
+
+	if ( ! class_exists( 'WP_DLM' ) ) { // Check if DLM is active.
 		add_action( 'admin_notices', 'dlm_woocommerce_dlm_needs', 15 );
 
 		return;
 	}
 
-	//Check if WooCommerce is active.
+	// Check if WooCommerce is active.
 	if ( ! class_exists( 'WooCommerce' ) ) {
 		add_action( 'admin_notices', 'dlm_woocommerce_woocommerce_needs', 15 );
 

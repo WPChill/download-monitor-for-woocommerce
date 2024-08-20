@@ -20,12 +20,15 @@ class DLM_WC_Modal {
 	 */
 	public static $instance;
 
+	/**
+	 * DLM_WC_Modal constructor.
+	 *
+	 * @since 1.0.0
+	 */
 	private function __construct() {
-
 		add_action( 'wp_footer', array( $this, 'add_footer_scripts' ) );
 		add_action( 'wp_ajax_nopriv_dlm_woo_lock_modal', array( $this, 'xhr_no_access_modal' ), 15 );
 		add_action( 'wp_ajax_dlm_woo_lock_modal', array( $this, 'xhr_no_access_modal' ), 15 );
-
 	}
 
 	/**
@@ -34,8 +37,8 @@ class DLM_WC_Modal {
 	 * @return DLM_WC_Modal
 	 * @since 1.0.0
 	 */
-	public static function get_instance(): DLM_WC_Modal {
-
+	public static function get_instance()
+	: DLM_WC_Modal {
 		if ( ! isset( self::$instance ) && ! ( self::$instance instanceof DLM_WC_Modal ) ) {
 			self::$instance = new DLM_WC_Modal();
 		}
@@ -51,7 +54,7 @@ class DLM_WC_Modal {
 	 */
 	public function add_footer_scripts() {
 		// Only add the script if the modal template exists.
-		// Failsafe, in case the Modal template is non-existent, for example prior to DLM 4.9.0
+		// Failsafe, in case the Modal template is non-existent, for example prior to DLM 4.9.0.
 		if ( ! class_exists( 'DLM_Constants' ) || ! defined( 'DLM_Constants::DLM_MODAL_TEMPLATE' ) ) {
 			return;
 		}
@@ -67,7 +70,6 @@ class DLM_WC_Modal {
 		<?php
 	}
 
-
 	/**
 	 * Renders the modal contents.
 	 *
@@ -75,7 +77,6 @@ class DLM_WC_Modal {
 	 * @since 4.3.13
 	 */
 	public function xhr_no_access_modal() {
-
 		if ( isset( $_POST['download_id'] ) ) {
 			wp_enqueue_style( 'dlm-wci-frontend', DLM_WC_URL . 'assets/css/front/frontend.css', array(), DLM_WC_VERSION );
 			// Scripts and styles already enqueued in the shortcode action.
@@ -87,9 +88,9 @@ class DLM_WC_Modal {
 			}
 			DLM_Modal::display_modal_template(
 				array(
-					'title'   => $title,
-					'content' => '<div id="dlm_woo_lock_form">' . $content . '</div>',
-					'tailwind' => true
+					'title'    => $title,
+					'content'  => '<div id="dlm_woo_lock_form">' . $content . '</div>',
+					'tailwind' => true,
 				)
 			);
 		}
@@ -100,13 +101,12 @@ class DLM_WC_Modal {
 	/**
 	 * The modal content for the Woocommerce Integration extension.
 	 *
-	 * @param int $download_id The download ID.
+	 * @param  int  $download_id  The download ID.
 	 *
 	 * @return false|string
 	 * @since 1.0.0
 	 */
 	private function modal_content( $download_id ) {
-
 		$products = get_post_meta( $download_id, DLM_WC_Constants::META_WC_LOCKED_KEY, true );
 
 		if ( ! empty( $products ) ) {
@@ -117,7 +117,7 @@ class DLM_WC_Modal {
 				'',
 				DLM_WC_PATH . 'templates/',
 				array(
-					'products' => $products
+					'products' => $products,
 				)
 			);
 
