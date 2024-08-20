@@ -1,7 +1,7 @@
 <?php
 /*
 	Plugin Name: Download Monitor integration for WooCommerce
-	Plugin URI: https://download-monitor.com/kb/woocommerce-and-download-monitor-integration/?utm_source=wordpress.org&utm_medium=web&utm_campaign=description-block
+	Plugin URI: https://download-monitor.com/kb/woocommerce-and-download-monitor-integration/
 	Description: With the help of this extension you will be able to restrict the downloads from your website behind a WooCommerce purchase.
 	Version: 1.0.0
 	Author: WPChill
