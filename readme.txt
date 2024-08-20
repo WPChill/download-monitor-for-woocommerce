@@ -7,7 +7,7 @@ Stable tag: 1.0.0
 License: GPLv3
 Requires PHP: 5.6
 
-Restrict downloads behind a WooCommerce purchase.
+Restrict your available downloads behind a WooCommerce purchase.
 
 == Description ==
 
@@ -15,7 +15,7 @@ With the help of this extension you will be able to restrict the downloads from 
 
 == How does it work ==
 
-When configuring your WooCommerce products, you will be able to select and attach a download/file from Download Monitor. This will allow users to download that specific file only after they purchase the product it is linked to. Easy as that!
+When configuring your WooCommerce products, you will be able to select and attach a download/file from Download Monitor. This will allow users to download that specific file only after they purchase the product it is linked to.
 
 You can read more about this extension in our [official documentation article](https://download-monitor.com/kb/).
 
@@ -31,11 +31,11 @@ Yes, in order for the integration to properly determine your download permission
 
 = What payment integrations are available? =
 
-You can take advantage of all the payment integrations provided by WooCommerce, the actual purchases are handled directly from there. 
+You can take advantage of all the payment integrations provided by WooCommerce, the actual purchases are handled directly from WooCommerce. 
 
 = Can I attach multiple downloads to a single product? =
 
-Yes, when configuring your WooCommerce product you can link one or multiple downloads from Download Monitor. 
+Yes, when configuring your WooCommerce product, you can link one or multiple downloads from Download Monitor. 
 
 == Screenshots ==
 
