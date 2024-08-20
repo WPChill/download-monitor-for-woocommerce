@@ -1,11 +1,14 @@
 <?php
 /*
-	Plugin Name: Download Monitor - WooCommerce integration
-	Plugin URI: https://www.download-monitor.com/extensions/dlm-simple-wordpress-membership-integration/
+	Plugin Name: Download Monitor integration for WooCommerce
+	Plugin URI: https://download-monitor.com/kb/woocommerce-and-download-monitor-integration/?utm_source=wordpress.org&utm_medium=web&utm_campaign=description-block
 	Description: With the help of this extension you will be able to restrict the downloads from your website behind a WooCommerce purchase.
 	Version: 1.0.0
 	Author: WPChill
 	Author URI: https://wpchill.com
+	Requires PHP: 7.3
+	Text Domain: download-monitor-woocommerce-integration
+	Domain Path: /languages
     Requires Plugins: woocommerce, download-monitor
 	License: GPL v3
 	This program is free software: you can redistribute it and/or modify
