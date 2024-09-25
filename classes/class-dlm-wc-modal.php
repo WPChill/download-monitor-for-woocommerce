@@ -1,6 +1,6 @@
 <?php
 /**
- * DLM_WC_Modal class file.
+ * DLMWC_Modal class file.
  *
  * Handles the modal functionality for the WooCommerce extension.
  *
@@ -13,23 +13,23 @@ if ( ! defined( 'ABSPATH' ) ) {
 } // Exit if accessed directly
 
 /**
- * Class DLM_WC_Modal
+ * Class DLMWC_Modal
  * used to handle the modal functionality for the Email Lock extension.
  *
  * @since 1.0.0
  */
-class DLM_WC_Modal {
+class DLMWC_Modal {
 
 	/**
 	 * The singleton instance of the class.
 	 *
-	 * @var DLM_WC_Modal
+	 * @var DLMWC_Modal
 	 * @since 1.0.0
 	 */
 	public static $instance;
 
 	/**
-	 * DLM_WC_Modal constructor.
+	 * DLMWC_Modal constructor.
 	 *
 	 * @since 1.0.0
 	 */
@@ -42,12 +42,12 @@ class DLM_WC_Modal {
 	/**
 	 * Returns the singleton instance of the class.
 	 *
-	 * @return DLM_WC_Modal
+	 * @return DLMWC_Modal
 	 * @since 1.0.0
 	 */
 	public static function get_instance() {
-		if ( ! isset( self::$instance ) && ! ( self::$instance instanceof DLM_WC_Modal ) ) {
-			self::$instance = new DLM_WC_Modal();
+		if ( ! isset( self::$instance ) && ! ( self::$instance instanceof DLMWC_Modal ) ) {
+			self::$instance = new DLMWC_Modal();
 		}
 
 		return self::$instance;
@@ -76,7 +76,7 @@ class DLM_WC_Modal {
 	 */
 	public function xhr_no_access_modal() {
 		if ( isset( $_POST['download_id'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
-			wp_enqueue_style( 'dlm-wci-frontend', DLM_WC_URL . 'assets/css/front/frontend.css', array(), DLM_WC_VERSION );
+			wp_enqueue_style( 'dlm-wci-frontend', DLMWC_URL . 'assets/css/front/frontend.css', array(), DLMWC_VERSION );
 			// Scripts and styles already enqueued in the shortcode action.
 			$title   = __( 'Buy one of the following to get access to the desired file.', 'download-monitor-for-woocommerce' );
 			$content = $this->modal_content( absint( $_POST['download_id'] ) );// phpcs:ignore WordPress.Security.NonceVerification.Missing
@@ -106,7 +106,7 @@ class DLM_WC_Modal {
 	 * @since 1.0.0
 	 */
 	private function modal_content( $download_id ) {
-		$products = get_post_meta( $download_id, DLM_WC_Constants::META_WC_LOCKED_KEY, true );
+		$products = get_post_meta( $download_id, DLMWC_Constants::META_WC_LOCKED_KEY, true );
 
 		if ( ! empty( $products ) ) {
 			$template_handler = new DLM_Template_Handler();
@@ -114,7 +114,7 @@ class DLM_WC_Modal {
 			$template_handler->get_template_part(
 				'no-access-modal-products',
 				'',
-				DLM_WC_PATH . 'templates/',
+				DLMWC_PATH . 'templates/',
 				array(
 					'products' => $products,
 				)

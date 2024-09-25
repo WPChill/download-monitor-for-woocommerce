@@ -34,10 +34,10 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 function dlm_woocommerce_integration() {
 	// Define.
-	define( 'DLM_WC_FILE', __FILE__ );
-	define( 'DLM_WC_PATH', plugin_dir_path( __FILE__ ) );
-	define( 'DLM_WC_URL', plugin_dir_url( __FILE__ ) );
-	define( 'DLM_WC_VERSION', '1.0.0' );
+	define( 'DLMWC_FILE', __FILE__ );
+	define( 'DLMWC_PATH', plugin_dir_path( __FILE__ ) );
+	define( 'DLMWC_URL', plugin_dir_url( __FILE__ ) );
+	define( 'DLMWC_VERSION', '1.0.0' );
 
 	if ( ! class_exists( 'WP_DLM' ) ) { // Check if DLM is active.
 		add_action( 'admin_notices', 'dlm_woocommerce_dlm_needs', 15 );
@@ -52,14 +52,14 @@ function dlm_woocommerce_integration() {
 		return;
 	}
 	// include files.
-	require_once DLM_WC_PATH . 'classes/class-dlm-wc-integration.php';
-	require_once DLM_WC_PATH . 'classes/class-dlm-wc-constants.php';
-	require_once DLM_WC_PATH . 'classes/class-dlm-wc-access.php';
-	require_once DLM_WC_PATH . 'classes/class-dlm-wc-modal.php';
+	require_once DLMWC_PATH . 'classes/class-dlm-wc-integration.php';
+	require_once DLMWC_PATH . 'classes/class-dlm-wc-constants.php';
+	require_once DLMWC_PATH . 'classes/class-dlm-wc-access.php';
+	require_once DLMWC_PATH . 'classes/class-dlm-wc-modal.php';
 	// Initiate classes.
-	DLM_WC_Integration::get_instance();
-	DLM_WC_Access::get_instance();
-	DLM_WC_Modal::get_instance();
+	DLMWC_Integration::get_instance();
+	DLMWC_Access::get_instance();
+	DLMWC_Modal::get_instance();
 }
 
 // init extension.

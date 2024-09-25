@@ -31,7 +31,7 @@ if ( 1 === count( $products ) ) {
 				$template_handler->get_template_part(
 					'single-item',
 					'',
-					DLM_WC_PATH . 'templates/parts/',
+					DLMWC_PATH . 'templates/parts/',
 					array(
 						'id' => $product_id
 					)

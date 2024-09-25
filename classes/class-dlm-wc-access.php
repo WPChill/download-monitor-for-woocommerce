@@ -1,18 +1,18 @@
 <?php
 /**
- * DLM_WC_Access class file.
+ * DLMWC_Access class file.
  */
 
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
 
 /**
- * Class DLM_WC_Access
+ * Class DLMWC_Access
  * This class handles the access to downloads.
  *
  * @since 1.0.0
  */
-class DLM_WC_Access {
+class DLMWC_Access {
 
 	/**
 	 * The singleton instance of the class.
@@ -25,12 +25,12 @@ class DLM_WC_Access {
 	/**
 	 * Returns the singleton instance of the class.
 	 *
-	 * @return object The DLM_WC_Integration object.
+	 * @return object The DLMWC_Access object.
 	 * @since 1.0.0
 	 */
 	public static function get_instance() {
-		if ( ! isset( self::$instance ) && ! ( self::$instance instanceof DLM_WC_Access ) ) {
-			self::$instance = new DLM_WC_Access();
+		if ( ! isset( self::$instance ) && ! ( self::$instance instanceof DLMWC_Access ) ) {
+			self::$instance = new DLMWC_Access();
 		}
 
 		return self::$instance;
@@ -60,7 +60,7 @@ class DLM_WC_Access {
 	 */
 	public function check_access( $has_access, $download ) {
 		// let's check if the download is locked.
-		if ( ! get_post_meta( $download->get_id(), DLM_WC_Constants::META_WC_LOCKED_KEY, true ) ) {
+		if ( ! get_post_meta( $download->get_id(), DLMWC_Constants::META_WC_LOCKED_KEY, true ) ) {
 			return $has_access;
 		}
 
@@ -104,7 +104,7 @@ class DLM_WC_Access {
 			$order_items = $order->get_items();
 			foreach ( $order_items as $order_item ) {
 				// Check if the download is locked by the product.
-				if ( in_array( $download->get_id(), get_post_meta( absint( $order_item['product_id'] ), DLM_WC_Constants::META_WC_PROD_KEY, true ) ) ) {
+				if ( in_array( $download->get_id(), get_post_meta( absint( $order_item['product_id'] ), DLMWC_Constants::META_WC_PROD_KEY, true ) ) ) {
 					$has_order = true;
 					break;
 				}
@@ -116,7 +116,7 @@ class DLM_WC_Access {
 			$sub_items = $sub->get_items();
 			// look for items in the subscriptions that match the download.
 			foreach ( $sub_items as $sub_item ) {
-				if ( in_array( $download->get_id(), get_post_meta( absint( $sub_item->get_product_id() ), DLM_WC_Constants::META_WC_PROD_KEY, true ) ) ) {
+				if ( in_array( $download->get_id(), get_post_meta( absint( $sub_item->get_product_id() ), DLMWC_Constants::META_WC_PROD_KEY, true ) ) ) {
 					$has_order = true;
 					break;
 				}
@@ -168,7 +168,7 @@ class DLM_WC_Access {
 	 * @since 1.0.0
 	 */
 	public function add_products_on_modal( $download ) {
-		$products = get_post_meta( $download->get_id(), DLM_WC_Constants::META_WC_LOCKED_KEY, true );
+		$products = get_post_meta( $download->get_id(), DLMWC_Constants::META_WC_LOCKED_KEY, true );
 
 		if ( ! empty( $products ) ) {
 			$template_handler = new DLM_Template_Handler();
@@ -176,7 +176,7 @@ class DLM_WC_Access {
 			$template_handler->get_template_part(
 				'no-access-modal-products',
 				'',
-				DLM_WC_PATH . 'templates/',
+				DLMWC_PATH . 'templates/',
 				array(
 					'products' => $products,
 				)
@@ -192,6 +192,6 @@ class DLM_WC_Access {
 	 * @since 1.0.0
 	 */
 	public function enqueue_scripts() {
-		wp_register_style( 'dlm-wci-frontend', DLM_WC_URL . 'assets/css/front/frontend.css', array(), DLM_WC_VERSION );
+		wp_register_style( 'dlm-wci-frontend', DLMWC_URL . 'assets/css/front/frontend.css', array(), DLMWC_VERSION );
 	}
 }

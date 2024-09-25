@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Download Monitor integration for WooCommerce 1.0.0\n"
 "Report-Msgid-Bugs-To: "
 "https://wordpress.org/support/plugin/download-monitor-for-woocommerce\n"
-"POT-Creation-Date: 2024-09-25 11:02:03+00:00\n"
+"POT-Creation-Date: 2024-09-25 11:18:48+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -29,15 +29,15 @@ msgstr ""
 msgid "Downloads"
 msgstr ""
 
-#: classes/class-dlm-wc-integration.php:146
+#: classes/class-dlm-wc-integration.php:144
 msgid "You must be logged in to view downloads."
 msgstr ""
 
-#: classes/class-dlm-wc-integration.php:175
+#: classes/class-dlm-wc-integration.php:173
 msgid "Download Monitor Downloads"
 msgstr ""
 
-#: classes/class-dlm-wc-integration.php:178
+#: classes/class-dlm-wc-integration.php:176
 msgid "No downloads available."
 msgstr ""
 
@@ -49,19 +49,19 @@ msgstr ""
 msgid "No products found."
 msgstr ""
 
-#: download-monitor-for-woocommerce.php:75
+#: download-monitor-for-woocommerce.php:79
 msgid ""
 "Download Monitor - WooCommerce integration requires Download Monitor plugin "
 "to be installed and activated."
 msgstr ""
 
-#: download-monitor-for-woocommerce.php:93
+#: download-monitor-for-woocommerce.php:97
 msgid ""
 "Download Monitor - WooCommerce integration requires WooCommerce plugin to "
 "be installed and activated."
 msgstr ""
 
-#: templates/parts/single-item.php:28
+#: templates/parts/single-item.php:37
 msgid "Buy now"
 msgstr ""
 
