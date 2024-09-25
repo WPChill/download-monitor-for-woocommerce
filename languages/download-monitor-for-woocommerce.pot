@@ -2,11 +2,10 @@
 # This file is distributed under the GPL v3.
 msgid ""
 msgstr ""
-"Project-Id-Version: Download Monitor - WooCommerce integration 1.0.0\n"
+"Project-Id-Version: Download Monitor integration for WooCommerce 1.0.0\n"
 "Report-Msgid-Bugs-To: "
-"https://wordpress.org/support/plugin/download-monitor-woocommerce-"
-"integration\n"
-"POT-Creation-Date: 2024-08-19 13:49:09+00:00\n"
+"https://wordpress.org/support/plugin/download-monitor-for-woocommerce\n"
+"POT-Creation-Date: 2024-09-25 11:02:03+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -26,56 +25,60 @@ msgstr ""
 "X-Textdomain-Support: yes\n"
 "X-Generator: grunt-wp-i18n 1.0.3\n"
 
-#: classes/class-dlm-wc-integration.php:128
+#: classes/class-dlm-wc-integration.php:69
+msgid "Downloads"
+msgstr ""
+
+#: classes/class-dlm-wc-integration.php:146
 msgid "You must be logged in to view downloads."
 msgstr ""
 
-#: classes/class-dlm-wc-integration.php:157
+#: classes/class-dlm-wc-integration.php:175
 msgid "Download Monitor Downloads"
 msgstr ""
 
-#: classes/class-dlm-wc-integration.php:160
+#: classes/class-dlm-wc-integration.php:178
 msgid "No downloads available."
 msgstr ""
 
-#: classes/class-dlm-wc-modal.php:82
+#: classes/class-dlm-wc-modal.php:81
 msgid "Buy one of the following to get access to the desired file."
 msgstr ""
 
-#: classes/class-dlm-wc-modal.php:86
+#: classes/class-dlm-wc-modal.php:85
 msgid "No products found."
 msgstr ""
 
-#: download-monitor-woocommerce-integration.php:70
+#: download-monitor-for-woocommerce.php:75
 msgid ""
 "Download Monitor - WooCommerce integration requires Download Monitor plugin "
 "to be installed and activated."
 msgstr ""
 
-#: download-monitor-woocommerce-integration.php:85
+#: download-monitor-for-woocommerce.php:93
 msgid ""
 "Download Monitor - WooCommerce integration requires WooCommerce plugin to "
 "be installed and activated."
 msgstr ""
 
-#: templates/parts/single-item.php:19
+#: templates/parts/single-item.php:28
 msgid "Buy now"
 msgstr ""
 
 #. Plugin Name of the plugin/theme
-msgid "Download Monitor - WooCommerce integration"
+msgid "Download Monitor integration for WooCommerce"
 msgstr ""
 
 #. Plugin URI of the plugin/theme
 msgid ""
-"https://www.download-monitor.com/extensions/dlm-simple-wordpress-membership-"
+"https://download-monitor.com/kb/woocommerce-and-download-monitor-"
 "integration/"
 msgstr ""
 
 #. Description of the plugin/theme
 msgid ""
-"Download Monitor & WooCommerce integration extension allows you to limit "
-"downloads by bought products categories & subscription."
+"With the help of this extension you will be able to restrict the downloads "
+"from your website behind a WooCommerce purchase."
 msgstr ""
 
 #. Author of the plugin/theme

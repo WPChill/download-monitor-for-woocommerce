@@ -2,6 +2,7 @@
 /**
  * DLM_WC_Access class file.
  */
+
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
 

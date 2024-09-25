@@ -16,7 +16,7 @@ module.exports = function (grunt) {
 			checktextdomain: {
 				standard: {
 					options: {
-						text_domain       : ['download-monitor-woocommerce-integration'], //Specify allowed domain(s)
+						text_domain       : ['download-monitor-for-woocommerce'], //Specify allowed domain(s)
 						create_report_file: 'true',
 						keywords          : [ //List keyword specifications
 							'__:1,2d',
@@ -54,9 +54,9 @@ module.exports = function (grunt) {
 						domainPath     : 'languages/',         // Where to save the POT file.
 						exclude        : [],                      // List of files or directories to ignore.
 						include        : [],                      // List of files or directories to include.
-						mainFile       : 'download-monitor-woocommerce-integration.php',                     // Main project file.
+						mainFile       : 'download-monitor-for-woocommerce.php',                     // Main project file.
 						potComments    : '',                  // The copyright at the beginning of the POT file.
-						potFilename    : 'download-monitor-woocommerce-integration.pot',                  // Name of the POT file.
+						potFilename    : 'download-monitor-for-woocommerce.pot',                  // Name of the POT file.
 						potHeaders     : {
 							poedit                 : true,                 // Includes common Poedit headers.
 							'x-poedit-keywordslist': true // Include a list of all possible gettext functions.
@@ -123,7 +123,7 @@ module.exports = function (grunt) {
 						'!postcss.config.js',
 						'!webpack.config.js',
 						'!set_tags.sh',
-						'!download-monitor-woocommerce-integration.zip',
+						'!download-monitor-for-woocommerce.zip',
 						'!old/**',
 						'!bin/**',
 						'!tests/**',

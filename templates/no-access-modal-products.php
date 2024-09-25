@@ -1,4 +1,14 @@
 <?php
+/**
+ * No access modal products template.
+ *
+ * @since 1.0.0
+ */
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+} // Exit if accessed directly
+
 $class = 'dlm-grid-cols-3';
 
 if ( 1 === count( $products ) ) {

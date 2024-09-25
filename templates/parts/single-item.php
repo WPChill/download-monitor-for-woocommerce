@@ -1,4 +1,13 @@
 <?php
+/**
+ * Single item template.
+ *
+ * @since 1.0.0
+ */
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+} // Exit if accessed directly
 
 $product = wc_get_product( $id );
 ?>
@@ -25,6 +34,6 @@ $product = wc_get_product( $id );
 		<a href='<?php
 		echo esc_url( wc_get_cart_url() . '?' . http_build_query( array( 'add-to-cart' => $id ) ) ); ?>'
 		   class='dlm-mt-6 dlm-block dlm-rounded-md dlm-py-2 dlm-px-3 dlm-text-center dlm-text-sm dlm-font-semibold dlm-leading-6 focus-visible:dlm-outline focus-visible:dlm-outline-2 focus-visible:dlm-outline-offset-2 focus-visible:dlm-outline-indigo-600 dlm-text-indigo-600 dlm-ring-1 dlm-ring-inset dlm-ring-indigo-200 hover:dlm-ring-indigo-300'><?php
-			esc_html_e( 'Buy now', 'download-monitor-woocommerce-integration' ) ?></a>
+			esc_html_e( 'Buy now', 'download-monitor-for-woocommerce' ) ?></a>
 	</div>
 <?php

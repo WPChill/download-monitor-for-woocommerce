@@ -78,11 +78,11 @@ class DLM_WC_Modal {
 		if ( isset( $_POST['download_id'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
 			wp_enqueue_style( 'dlm-wci-frontend', DLM_WC_URL . 'assets/css/front/frontend.css', array(), DLM_WC_VERSION );
 			// Scripts and styles already enqueued in the shortcode action.
-			$title   = __( 'Buy one of the following to get access to the desired file.', 'download-monitor-woocommerce-integration' );
-			$content = $this->modal_content( absint( $_POST['download_id'] ) );
+			$title   = __( 'Buy one of the following to get access to the desired file.', 'download-monitor-for-woocommerce' );
+			$content = $this->modal_content( absint( $_POST['download_id'] ) );// phpcs:ignore WordPress.Security.NonceVerification.Missing
 
 			if ( ! $content ) {
-				$content = __( 'No products found.', 'download-monitor-woocommerce-integration' );
+				$content = __( 'No products found.', 'download-monitor-for-woocommerce' );
 			}
 			// phpcs:enable
 			DLM_Modal::display_modal_template(

@@ -1,10 +1,10 @@
 {
-	"name": "download-monitor-woocommerce-integration",
+	"name": "download-monitor-for-woocommerce",
 	"main": "Gruntfile.js",
 	"version": "1.0.0",
 	"author": "WPCHILL",
 	"license": "GPL v3",
-	"repository": "https://github.com/WPChill/download-monitor-woocommerce-integration.git",
+	"repository": "https://github.com/WPChill/download-monitor-for-woocommerce.git",
 	"scripts": {
 		"build": "webpack",
 		"watch": "webpack --watch",

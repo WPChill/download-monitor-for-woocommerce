@@ -66,7 +66,7 @@ class DLM_WC_Integration {
 		?>
 		<div class="options-group dlm-woocommerce-locked-downloads">
 			<p class="form-field">
-				<label for="<?php echo esc_attr( DLM_WC_Constants::META_WC_PROD_KEY ); ?>"><?php esc_html_e( 'Downloads', 'download-monitor-woocommerce-integration' ); ?></label>
+				<label for="<?php echo esc_attr( DLM_WC_Constants::META_WC_PROD_KEY ); ?>"><?php esc_html_e( 'Downloads', 'download-monitor-for-woocommerce' ); ?></label>
 				<select class='wc-enhanced-select' name='<?php echo esc_attr( DLM_WC_Constants::META_WC_PROD_KEY ); ?>[]' multiple='multiple'>
 					<?php
 					// Cycle through each download and output the option.
@@ -89,10 +89,8 @@ class DLM_WC_Integration {
 	 * @since 1.0.0
 	 */
 	public function save_download_monitor_field( $post_id ) {
-		// phpcs:ignore WordPress.Security.NonceVerification.Missing
 		// The retrieved data should be an array.
-		$download_monitor_ids = ! empty( $_POST[ DLM_WC_Constants::META_WC_PROD_KEY ] ) ? array_map( 'absint', $_POST[ DLM_WC_Constants::META_WC_PROD_KEY ] ) : array();
-		// phpcs:enable
+		$download_monitor_ids = ! empty( $_POST[ DLM_WC_Constants::META_WC_PROD_KEY ] ) ? array_map( 'absint', $_POST[ DLM_WC_Constants::META_WC_PROD_KEY ] ) : array();// phpcs:ignore WordPress.Security.NonceVerification.Missing
 		if ( ! empty( $download_monitor_ids ) ) {
 			update_post_meta( $post_id, DLM_WC_Constants::META_WC_PROD_KEY, $download_monitor_ids );
 			// Lock each download to the product.
@@ -143,7 +141,7 @@ class DLM_WC_Integration {
 	public function show_download_monitor_content() {
 		$user_id = get_current_user_id();
 		if ( ! $user_id ) {
-			echo esc_html__( 'You must be logged in to view downloads.', 'download-monitor-woocommerce-integration' );
+			echo esc_html__( 'You must be logged in to view downloads.', 'download-monitor-for-woocommerce' );
 
 			return;
 		}
@@ -172,10 +170,10 @@ class DLM_WC_Integration {
 			}
 		}
 
-		echo '<h2>' . esc_html__( 'Download Monitor Downloads', 'download-monitor-woocommerce-integration' ) . '</h2>';
+		echo '<h2>' . esc_html__( 'Download Monitor Downloads', 'download-monitor-for-woocommerce' ) . '</h2>';
 
 		if ( empty( $download_ids ) ) {
-			echo esc_html__( 'No downloads available.', 'download-monitor-woocommerce-integration' );
+			echo esc_html__( 'No downloads available.', 'download-monitor-for-woocommerce' );
 
 			return;
 		}

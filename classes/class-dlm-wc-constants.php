@@ -2,6 +2,7 @@
 /**
  * DLM_WC_Constants class file.
  */
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 } // Exit if accessed directly
