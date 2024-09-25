@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * DLM_WC_Access class file.
+ */
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
 
@@ -40,8 +42,8 @@ class DLM_WC_Access {
 	 */
 	private function __construct() {
 		// Filter the download to redirect regular download buttons of mail locked downloads.
-		add_filter( 'dlm_can_download', array( $this, 'check_access' ), 30, 5 );
-		// Add shortcode form to the no access page
+		add_filter( 'dlm_can_download', array( $this, 'check_access' ), 30, 2 );
+		// Add shortcode form to the no access page.
 		add_action( 'dlm_no_access_after_message', array( $this, 'add_products_on_modal' ), 15, 1 );
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 	}
@@ -49,17 +51,14 @@ class DLM_WC_Access {
 	/**
 	 * Check access to download.
 	 *
-	 * @param  bool    $has_access      Whether the user has access to the download.
-	 * @param  object  $download        The download object.
-	 * @param  object  $version         The version object.
-	 * @param  array   $post_data       The post data.
-	 * @param  bool    $XMLHttpRequest  Whether the request is an XMLHttpRequest.
+	 * @param  bool   $has_access      Whether the user has access to the download.
+	 * @param  object $download        The download object.
 	 *
 	 * @return bool
 	 * @since 1.0.0
 	 */
-	public function check_access( $has_access, $download, $version, $post_data = null, $XMLHttpRequest = false ) {
-		// let's check if the download is locked
+	public function check_access( $has_access, $download ) {
+		// let's check if the download is locked.
 		if ( ! get_post_meta( $download->get_id(), DLM_WC_Constants::META_WC_LOCKED_KEY, true ) ) {
 			return $has_access;
 		}
@@ -80,7 +79,7 @@ class DLM_WC_Access {
 		$subscriptions = array();
 
 		if ( function_exists( 'wc_get_orders' ) ) {
-			// Get all completed orders for the user
+			// Get all completed orders for the user.
 			$orders = wc_get_orders(
 				array(
 					'customer' => $user_id,
@@ -140,6 +139,7 @@ class DLM_WC_Access {
 	 * @param DLM_Download $download The download object.
 	 *
 	 * @return void
+	 * @since 1.0.0
 	 */
 	public function set_headers( $download ) {
 		if ( get_option( 'dlm_no_access_modal', false ) && apply_filters( 'do_dlm_xhr_access_modal', true, $download ) && defined( 'DLM_DOING_XHR' ) && DLM_DOING_XHR ) {

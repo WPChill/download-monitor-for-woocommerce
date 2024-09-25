@@ -1,5 +1,5 @@
 <?php
-/*
+/**
 	Plugin Name: Download Monitor integration for WooCommerce
 	Plugin URI: https://download-monitor.com/kb/woocommerce-and-download-monitor-integration/
 	Description: With the help of this extension you will be able to restrict the downloads from your website behind a WooCommerce purchase.
@@ -7,9 +7,9 @@
 	Author: WPChill
 	Author URI: https://wpchill.com
 	Requires PHP: 7.3
-	Text Domain: download-monitor-woocommerce-integration
+	Text Domain: download-monitor-for-woocommerce
 	Domain Path: /languages
-    Requires Plugins: woocommerce, download-monitor
+	Requires Plugins: woocommerce, download-monitor
 	License: GPL v3
 	This program is free software: you can redistribute it and/or modify
 	it under the terms of the GNU General Public License as published by
@@ -21,7 +21,7 @@
 	GNU General Public License for more details.
 	You should have received a copy of the GNU General Public License
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*/
+ */
 
 /**
  * Plugin init.
@@ -70,8 +70,11 @@ add_action( 'plugins_loaded', '_dlm_woocommerce_integration', 120 );
 function dlm_woocommerce_dlm_needs() {
 	?>
 	<div class="notice notice-error is-dismissible">
-		<p><?php
-			esc_html_e( 'Download Monitor - WooCommerce integration requires Download Monitor plugin to be installed and activated.', 'download-monitor-woocommerce-integration' ); ?></p>
+		<p>
+		<?php
+			esc_html_e( 'Download Monitor - WooCommerce integration requires Download Monitor plugin to be installed and activated.', 'download-monitor-woocommerce-integration' );
+		?>
+		</p>
 	</div>
 	<?php
 }
@@ -85,8 +88,11 @@ function dlm_woocommerce_dlm_needs() {
 function dlm_woocommerce_woocommerce_needs() {
 	?>
 	<div class="notice notice-error is-dismissible">
-		<p><?php
-			esc_html_e( 'Download Monitor - WooCommerce integration requires WooCommerce plugin to be installed and activated.', 'download-monitor-woocommerce-integration' ); ?></p>
+		<p>
+		<?php
+			esc_html_e( 'Download Monitor - WooCommerce integration requires WooCommerce plugin to be installed and activated.', 'download-monitor-woocommerce-integration' );
+		?>
+		</p>
 	</div>
 	<?php
 }

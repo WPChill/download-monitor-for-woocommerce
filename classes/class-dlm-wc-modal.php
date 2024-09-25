@@ -1,4 +1,12 @@
 <?php
+/**
+ * DLM_WC_Modal class file.
+ *
+ * Handles the modal functionality for the WooCommerce extension.
+ *
+ * @package DownloadMonitorWooCommerceIntegration
+ * @since 1.0.0
+ */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -37,8 +45,7 @@ class DLM_WC_Modal {
 	 * @return DLM_WC_Modal
 	 * @since 1.0.0
 	 */
-	public static function get_instance()
-	: DLM_WC_Modal {
+	public static function get_instance() {
 		if ( ! isset( self::$instance ) && ! ( self::$instance instanceof DLM_WC_Modal ) ) {
 			self::$instance = new DLM_WC_Modal();
 		}
@@ -58,26 +65,17 @@ class DLM_WC_Modal {
 		if ( ! class_exists( 'DLM_Constants' ) || ! defined( 'DLM_Constants::DLM_MODAL_TEMPLATE' ) ) {
 			return;
 		}
-		?>
-		<script>
-			jQuery(document).on('dlm-xhr-modal-data', function (e, data, headers) {
-				if ('undefined' !== typeof headers['x-dlm-woo-locked']) {
-					data['action']             = 'dlm_woo_lock_modal';
-					data['dlm_modal_response'] = 'true';
-				}
-			});
-		</script>
-		<?php
+		wp_add_inline_script( 'dlm-xhr', 'jQuery(document).on("dlm-xhr-modal-data", function (e, data, headers) {if ("undefined" !== typeof headers["x-dlm-woo-locked"]) {data["action"]= "dlm_woo_lock_modal";data["dlm_modal_response"] = "true";}});', 'after' );
 	}
 
 	/**
 	 * Renders the modal contents.
 	 *
 	 * @return void
-	 * @since 4.3.13
+	 * @since 1.0.0
 	 */
 	public function xhr_no_access_modal() {
-		if ( isset( $_POST['download_id'] ) ) {
+		if ( isset( $_POST['download_id'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
 			wp_enqueue_style( 'dlm-wci-frontend', DLM_WC_URL . 'assets/css/front/frontend.css', array(), DLM_WC_VERSION );
 			// Scripts and styles already enqueued in the shortcode action.
 			$title   = __( 'Buy one of the following to get access to the desired file.', 'download-monitor-woocommerce-integration' );
@@ -86,6 +84,7 @@ class DLM_WC_Modal {
 			if ( ! $content ) {
 				$content = __( 'No products found.', 'download-monitor-woocommerce-integration' );
 			}
+			// phpcs:enable
 			DLM_Modal::display_modal_template(
 				array(
 					'title'    => $title,
@@ -101,7 +100,7 @@ class DLM_WC_Modal {
 	/**
 	 * The modal content for the Woocommerce Integration extension.
 	 *
-	 * @param  int  $download_id  The download ID.
+	 * @param int $download_id  The download ID.
 	 *
 	 * @return false|string
 	 * @since 1.0.0
@@ -127,4 +126,3 @@ class DLM_WC_Modal {
 		return false;
 	}
 }
-

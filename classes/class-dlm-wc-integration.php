@@ -1,4 +1,11 @@
 <?php
+/**
+ * Download Monitor WooCommerce Integration
+ *
+ * This file contains the DLM_WC_Integration class which integrates Download Monitor with WooCommerce.
+ *
+ * @package DownloadMonitorWooCommerceIntegration
+ */
 
 defined( 'ABSPATH' ) || exit; // Exit if accessed directly.
 
@@ -59,11 +66,8 @@ class DLM_WC_Integration {
 		?>
 		<div class="options-group dlm-woocommerce-locked-downloads">
 			<p class="form-field">
-				<label for="<?php
-				echo esc_attr( DLM_WC_Constants::META_WC_PROD_KEY ); ?>">Downloads</label>
-				<select class='wc-enhanced-select'
-				        name='<?php
-				        echo esc_attr( DLM_WC_Constants::META_WC_PROD_KEY ); ?>[]' multiple='multiple'>
+				<label for="<?php echo esc_attr( DLM_WC_Constants::META_WC_PROD_KEY ); ?>"><?php esc_html_e( 'Downloads', 'download-monitor-woocommerce-integration' ); ?></label>
+				<select class='wc-enhanced-select' name='<?php echo esc_attr( DLM_WC_Constants::META_WC_PROD_KEY ); ?>[]' multiple='multiple'>
 					<?php
 					// Cycle through each download and output the option.
 					foreach ( $downloads as $id => $title ) {
@@ -80,14 +84,15 @@ class DLM_WC_Integration {
 	/**
 	 * Save the download monitor field and update the associated meta with the correct ID.
 	 *
-	 * @param  int  $post_id  The ID of the product being saved.
+	 * @param int $post_id  The ID of the product being saved.
 	 *
 	 * @since 1.0.0
 	 */
 	public function save_download_monitor_field( $post_id ) {
+		// phpcs:ignore WordPress.Security.NonceVerification.Missing
 		// The retrieved data should be an array.
 		$download_monitor_ids = ! empty( $_POST[ DLM_WC_Constants::META_WC_PROD_KEY ] ) ? array_map( 'absint', $_POST[ DLM_WC_Constants::META_WC_PROD_KEY ] ) : array();
-
+		// phpcs:enable
 		if ( ! empty( $download_monitor_ids ) ) {
 			update_post_meta( $post_id, DLM_WC_Constants::META_WC_PROD_KEY, $download_monitor_ids );
 			// Lock each download to the product.
@@ -108,7 +113,7 @@ class DLM_WC_Integration {
 	/**
 	 * Hook in and add the download monitor tab
 	 *
-	 * @param  array  $items  The existing tabs.
+	 * @param array $items  The existing tabs.
 	 *
 	 * @since 1.0.0
 	 */
