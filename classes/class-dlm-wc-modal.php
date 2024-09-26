@@ -65,7 +65,7 @@ class DLMWC_Modal {
 		if ( ! class_exists( 'DLM_Constants' ) || ! defined( 'DLM_Constants::DLM_MODAL_TEMPLATE' ) ) {
 			return;
 		}
-		wp_add_inline_script( 'dlm-xhr', 'jQuery(document).on("dlm-xhr-modal-data", function (e, data, headers) {if ("undefined" !== typeof headers["x-dlm-woo-locked"]) {data["action"]= "dlm_woo_lock_modal";data["dlm_modal_response"] = "true";}});', 'after' );
+		wp_add_inline_script( 'dlm-xhr', 'dlocument.addEventListener("dlm-xhr-modal-data", function (event) {if ("undefined" !== typeof event.detail.headers["x-dlm-woo-locked"]) {event.detail.data["action"]= "dlm_woo_lock_modal";event.detail.data["dlm_modal_response"] = "true";}});', 'after' );
 	}
 
 	/**
